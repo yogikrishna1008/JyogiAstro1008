@@ -218,7 +218,8 @@ def calculate_vedic_chart(date_str: str, time_str: str, lat: float, lon: float) 
     }
 
     for name, p_id in planets.items():
-        res = swe.calc_ut(jd, p_id, swe.FLG_SIDEREAL)
+        res = swe.calc_ut(jd, p_id, swe.FLG_SIDEREAL | swe.FLG_MOSEPH)
+
         longitude = res[0][0]
 
         if name == "Moon":
