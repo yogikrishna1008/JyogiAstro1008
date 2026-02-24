@@ -1,0 +1,24 @@
+# Secrets - NEVER commit
+.streamlit/secrets.toml
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Mac
+.DS_Store
+*.DS_Store
+
+# Generated PDFs (test outputs)
+*.pdf
+
+# Editor
+.vscode/
+.idea/
