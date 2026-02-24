@@ -1,8 +1,8 @@
+import pytz
 import swisseph as swe
 from datetime import datetime, timezone, timedelta
-from zoneinfo import ZoneInfo
 
-IST = ZoneInfo("Asia/Kolkata")
+IST = pytz.timezone("Asia/Kolkata")
 
 # --- 1. SETUP ---
 swe.set_sid_mode(swe.SIDM_LAHIRI)
