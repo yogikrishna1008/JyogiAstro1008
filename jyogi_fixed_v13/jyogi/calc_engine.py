@@ -224,6 +224,7 @@ def calculate_vedic_chart(date_str: str, time_str: str, lat: float, lon: float) 
 
         if name == "Moon":
             moon_long_deg = longitude
+            chart_data["DEBUG_moon"] = f"{longitude:.4f}"  # ← add this line
 
         sign_index = int(longitude / 30) % 12
         degree = longitude % 30
