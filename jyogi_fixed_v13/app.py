@@ -461,7 +461,7 @@ if mode == "🪐 Vedic Astrology & Numerology":
                 "Birth Date",
                 min_value=dt.date(1900, 1, 1),
                 max_value=dt.date.today(),
-                value=dt.date(2002, 8, 17),
+                value=dt.date(1983, 8, 17),
             )
         with col2:
             b_time = st.time_input("Birth Time (local IST)", value=dt.time(8, 35), step=60)
