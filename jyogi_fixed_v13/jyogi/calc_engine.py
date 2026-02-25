@@ -198,8 +198,10 @@ def get_full_dasha_timeline(moon_long_deg: float, birth_date_str: str) -> list[d
 
 # --- 3. MAIN CALCULATOR ---
 def get_julian_day(date_str: str, time_str: str) -> float:
-    dt_local = IST.localize(datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M"))
-    dt_utc = dt_local.astimezone(pytz.utc)
+    # pytz.localize() correctly applies IST (+05:30) on all platforms
+    dt_naive = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
+    dt_local = IST.localize(dt_naive)
+    dt_utc   = dt_local.astimezone(pytz.utc)
     return _jd_from_utc(dt_utc)
 
 def calculate_vedic_chart(date_str: str, time_str: str, lat: float, lon: float) -> dict:
@@ -216,7 +218,7 @@ def calculate_vedic_chart(date_str: str, time_str: str, lat: float, lon: float) 
     }
 
     for name, p_id in planets.items():
-        res = swe.calc_ut(jd, p_id, swe.FLG_SIDEREAL)
+        res = swe.calc_ut(jd, p_id, swe.FLG_SIDEREAL | swe.FLG_MOSEPH)
         longitude = res[0][0]
 
         if name == "Moon":
