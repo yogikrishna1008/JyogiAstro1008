@@ -209,17 +209,16 @@ def calculate_vedic_chart(date_str: str, time_str: str, lat: float, lon: float) 
     swe.set_topo(lat, lon, 0)
 
     chart_data: dict = {}
-    chart_data["Current_Dasha"]  = calculate_current_dasha(moon_long_deg, date_str)
-    chart_data["DEBUG_moon"]     = f"{moon_long_deg:.4f}"
-    chart_data["DEBUG_nak"]      = f"{int(moon_long_deg / (800/60))}"
-    chart_data["DEBUG_dasha"]    = chart_data["Current_Dasha"]
-    moon_long_deg = 0.0
+    
 
     planets = {
         "Sun": swe.SUN, "Moon": swe.MOON, "Mars": swe.MARS,
         "Mercury": swe.MERCURY, "Jupiter": swe.JUPITER,
         "Venus": swe.VENUS, "Saturn": swe.SATURN, "Rahu": swe.MEAN_NODE
     }
+    chart_data["Current_Dasha"]  = calculate_current_dasha(moon_long_deg, date_str)
+    chart_data["Dasha_Timeline"] = get_full_dasha_timeline(moon_long_deg, date_str)
+    chart_data["sadhe_sati"]     = calculate_sadhe_sati(moon_long_deg)
 
     for name, p_id in planets.items():
         res = swe.calc_ut(jd, p_id, swe.FLG_SIDEREAL | swe.FLG_MOSEPH)
